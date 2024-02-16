@@ -88,7 +88,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script>
     function redirectToBooking(roomType) {
-      window.location.href = `booking.php?tipe=${roomType}`;
+      window.location.href = `booking.php`;
     }
   </script>
 </body>

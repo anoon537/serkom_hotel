@@ -114,16 +114,9 @@
     </section>
   </main>
 
-
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-
   <script>
-    document.getElementById("nomor-identitas").addEventListener("input", function() {
-      this.value = this.value.replace(/\D/g, '');
-    });
-
     $(function() {
       $("#tanggal-pesan").datepicker({
         dateFormat: 'dd/mm/yy',

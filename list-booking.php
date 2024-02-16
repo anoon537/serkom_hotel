@@ -58,29 +58,30 @@
             <?php
             include 'config.php';
 
-            $sql = "SELECT `id`, `nama`, `jk`, `nomor`, `tipe`, `tanggal`, CONCAT(durasi, ' Hari') AS durasi, CONCAT(diskon, '%') AS diskon, CONCAT('Rp.', FORMAT(total, 0)) AS total FROM `history` WHERE 1";
-
+            $sql = "SELECT id, nama, jk, nomor, tipe, tanggal, CONCAT(durasi, ' Hari') AS durasi, CONCAT(diskon, '%') AS diskon, CONCAT('Rp.', FORMAT(total, 0)) AS total FROM history";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                                <td>" . $row["id"] . "</td>
-                                <td>" . $row["nama"] . "</td>
-                                <td>" . $row["jk"] . "</td>
-                                <td>" . $row["nomor"] . "</td>
-                                <td>" . $row["tipe"] . "</td>
-                                <td>" . $row["tanggal"] . "</td>
-                                <td>" . $row["durasi"] . "</td>
-                                <td>" . $row["diskon"] . "</td>
-                                <td>" . $row["total"] . "</td>
-                            </tr>";
+            <td>{$row['id']}</td>
+            <td>{$row['nama']}</td>
+            <td>{$row['jk']}</td>
+            <td>{$row['nomor']}</td>
+            <td>{$row['tipe']}</td>
+            <td>{$row['tanggal']}</td>
+            <td>{$row['durasi']}</td>
+            <td>{$row['diskon']}</td>
+            <td>{$row['total']}</td>
+        </tr>";
               }
             } else {
               echo "0 hasil";
             }
+
             $conn->close();
             ?>
+
           </tbody>
         </table>
       </div>
