@@ -174,6 +174,7 @@
         alert('Isian salah. Data Identitas Harus 16 digit angka.');
         return false;
       }
+      alert('Pemesanan hotel berhasil. Terima kasih telah memesan!')
       return true;
     }
   </script>

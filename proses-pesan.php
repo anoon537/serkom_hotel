@@ -12,29 +12,18 @@ $month = $result[1];
 $years = $result[2];
 $new = $years . '-' . $month . '-' . $date;
 
-if (isset($_POST['durasi-menginap'])) {
-  $durasi_menginap = intval($_POST['durasi-menginap']);
-  if ($durasi_menginap >= 3) {
-    $diskon = 10;
-  } else {
-    $diskon = 0;
-  }
-}
+$durasiMenginap = intval($_POST['durasi-menginap']);
+$diskon = ($durasiMenginap >= 3) ? 10 : 0;
 
-$durasiMenginap = $_POST['durasi-menginap'];
 $totalBayar = $_POST['total-bayar'];
 
-$stmt = $conn->prepare("INSERT INTO `history` (`nama`, `jk`, `nomor`, `tipe`, `tanggal`, `durasi`, `Diskon`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$sql = "INSERT INTO `history` (`nama`, `jk`, `nomor`, `tipe`, `tanggal`, `durasi`, `Diskon`, `total`) VALUES ('$namaPemesan', '$jenisKelamin', '$nomorIdentitas', '$tipeKamar', '$new', $durasiMenginap, $diskon, $totalBayar)";
 
-$stmt->bind_param("ssissidi", $namaPemesan, $jenisKelamin, $nomorIdentitas, $tipeKamar, $new, $durasiMenginap, $diskon, $totalBayar);
-
-if ($stmt->execute()) {
-  echo "Data berhasil disimpan ke dalam database";
+if ($conn->query($sql) === TRUE) {
   header("Location: list-booking.php");
   exit();
 } else {
-  echo "Error: " . $stmt->error;
+  echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$stmt->close();
 $conn->close();
